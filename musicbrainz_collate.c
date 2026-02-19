@@ -18,7 +18,9 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 
 */
-
+#include "postgres.h"            /* Required for all PG extensions */
+#include "fmgr.h"                /* Required for function manager macros */
+#include "utils/builtins.h"      /* Required for VARDATA, VARSIZE, etc. */
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
