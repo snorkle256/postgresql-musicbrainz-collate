@@ -22,9 +22,9 @@ Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 #include "postgres.h"
 #include "fmgr.h"
 #include "utils/builtins.h"
-#include "utils/varatt.h"   /* CRITICAL for VARDATA/VARSIZE in PG 16 */
+#include <utils/varatt.h>   /* Use angle brackets here! */
 
-/* Standard headers MUST come after Postgres headers */
+/* Standard headers */
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
