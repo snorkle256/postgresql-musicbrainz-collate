@@ -1,48 +1,21 @@
-/*
-
-musicbrainz_collate, a postgresql extension to sort with the UCA.
-Copyright 2010  MetaBrainz Foundation
-
-This program is free software; you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation; either version 2 of the License, or
-(at your option) any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with this program; if not, write to the Free Software
-Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
-
 #include "postgres.h"
 #include "fmgr.h"
-
-/* This is the magic header for PG16 varlena (VARDATA/VARSIZE) */
-/* 1. Primary PG headers first */
-#include "postgres.h"
-#include "fmgr.h"
-
-/* 2. Logic-specific PG headers */
 #include "utils/builtins.h"
-#include "access/detoast.h"
-#include "catalog/pg_type.h"  /* Adds extra type definitions */
+#include "varatt.h"
 
-/* 3. Standard C headers MUST come after PG headers */
+/* Standard headers */
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
 
-/* 4. Third-party headers (ICU) last */
+/* ICU headers */
 #include <unicode/utypes.h>
 #include <unicode/ucol.h>
 #include <unicode/ustring.h>
 
 PG_MODULE_MAGIC;
 
-Datum musicbrainz_collate(PG_FUNCTION_ARGS);
+Datum musicbrainz_collate (PG_FUNCTION_ARGS);
 PG_FUNCTION_INFO_V1(musicbrainz_collate);
 
 #define PREALLOC_SIZE 256
