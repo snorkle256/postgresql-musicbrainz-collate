@@ -21,14 +21,21 @@ Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 #include "fmgr.h"
 
 /* This is the magic header for PG16 varlena (VARDATA/VARSIZE) */
-#include "access/detoast.h"
-#include "utils/builtins.h"
+/* 1. Primary PG headers first */
+#include "postgres.h"
+#include "fmgr.h"
 
+/* 2. Logic-specific PG headers */
+#include "utils/builtins.h"
+#include "access/detoast.h"
+#include "catalog/pg_type.h"  /* Adds extra type definitions */
+
+/* 3. Standard C headers MUST come after PG headers */
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
 
-/* ICU headers */
+/* 4. Third-party headers (ICU) last */
 #include <unicode/utypes.h>
 #include <unicode/ucol.h>
 #include <unicode/ustring.h>
