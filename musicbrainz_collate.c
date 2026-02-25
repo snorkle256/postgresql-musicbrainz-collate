@@ -18,16 +18,22 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 
 */
-
 #include "postgres.h"
 #include "fmgr.h"
 #include "utils/builtins.h"
-#include <utils/varatt.h>   /* Use angle brackets here! */
 
 /* Standard headers */
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+
+/* Manually define Postgres 16 compatibility if headers are missing */
+#ifndef VARDATA
+#define VARDATA(PTR) VARDATA_ANY(PTR)
+#endif
+#ifndef VARSIZE
+#define VARSIZE(PTR) VARSIZE_ANY(PTR)
+#endif
 
 /* ICU headers */
 #include <unicode/utypes.h>
