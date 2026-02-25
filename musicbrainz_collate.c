@@ -21,27 +21,24 @@ Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 #include "postgres.h"
 #include "fmgr.h"
 #include "utils/builtins.h"
+#include "utils/varatt.h"   /* CRITICAL for VARDATA/VARSIZE in PG 16 */
 
-/* Standard headers must come AFTER postgres.h */
+/* Standard headers MUST come after Postgres headers */
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
 
+/* ICU headers */
 #include <unicode/utypes.h>
 #include <unicode/ucol.h>
 #include <unicode/ustring.h>
 
-#include "postgres.h"
-#include "fmgr.h"
-
 PG_MODULE_MAGIC;
 
-Datum musicbrainz_collate (PG_FUNCTION_ARGS);
-
+Datum musicbrainz_collate(PG_FUNCTION_ARGS);
 PG_FUNCTION_INFO_V1(musicbrainz_collate);
 
 #define PREALLOC_SIZE 256
-
 
 static int
 icu_failure (UErrorCode status)
